@@ -1,1 +1,3 @@
 # votesys
+
+Django voting system
