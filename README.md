@@ -1,3 +1,3 @@
-# votesys
+# django
 
-Django voting system
+Django code
