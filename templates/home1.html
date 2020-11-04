@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
+</head>
+
+<body onload="hide()">
+    <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
+    <input type="button" value="Take a Snap and Download Picture" id="btPic" 
+        onclick="takeSnapShot()" /> <br>
+        <br>
+    <div id="myDiv">
+        <form action="confirm">
+            <input type="submit" name="Next">
+        </form>
+    </div>
+</body>
+
+<script>
+    var z=0;
+    // CAMERA SETTINGS.
+    Webcam.set({
+        width: 220,
+        height: 190,
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera');
+
+    // TAKE A SNAPSHOT.
+    takeSnapShot = function () {
+
+        z++;
+            if (z==5){
+                show();
+            }
+        else{
+        Webcam.snap(function (data_uri) {
+            var x=document.getElementById("myDiv");
+            
+            downloadImage('arun', data_uri);
+            <!-- x.style.display="block" -->
+            
+
+        });
+    }
+    }
+    hide = function(){
+        var x=document.getElementById("myDiv");
+        x.style.display="none";
+        <!-- document.write("Blocked") -->
+    }
+    show=function(){
+        var x=document.getElementById("myDiv");
+        x.style.display="block";
+    }
+
+    // DOWNLOAD THE IMAGE.
+    downloadImage = function (name, datauri) {
+        var a = document.createElement('a');
+        a.setAttribute('Download', name + '.png');
+        a.setAttribute('href', datauri);
+        a.click();
+    }
+</script>
+</html>
